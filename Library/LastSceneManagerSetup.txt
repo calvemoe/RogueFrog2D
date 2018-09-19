@@ -1,1 +1,4 @@
-sceneSetups: []
+sceneSetups:
+- path: Assets/Project/Scenes/Input_s.unity
+  isLoaded: 1
+  isActive: 1
