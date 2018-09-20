@@ -56,7 +56,9 @@
      <Compile Include="Assets\Project\Scripts\Player.cs" />
      <Compile Include="Assets\Project\Scripts\Player_s.cs" />
      <Compile Include="Assets\Project\Scripts\Player3D.cs" />
+     <Compile Include="Assets\Project\Scripts\Player3D_s.cs" />
      <Compile Include="Assets\Project\Scripts\SceneManager3DSpace.cs" />
+     <Compile Include="Assets\Project\Scripts\SceneManager3DSpace1.cs" />
      <Compile Include="Assets\Project\Scripts\SceneManagerUI.cs" />
      <Compile Include="Assets\SimpleGesture\Example\Scripts\CameraController.cs" />
      <Compile Include="Assets\SimpleGesture\Example\Scripts\TestsManager.cs" />
