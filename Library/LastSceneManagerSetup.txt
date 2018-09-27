@@ -1,4 +1,0 @@
-sceneSetups:
-- path: Assets/Project/Scenes/3DSpace_s.unity
-  isLoaded: 1
-  isActive: 1
