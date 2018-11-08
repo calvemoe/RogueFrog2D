@@ -10,11 +10,6 @@ public class PlayerController : MonoBehaviour {
     public event PlayerHandler OnPlayerMoved;
     public event PlayerHandler OnPlayerEscaped;
 
-    public Text BotLeft;
-    public Text TopLeft;
-    public Text TopRight;
-    public Text BotRight;
-
     //player movement
     public float jumpDistance = 0.32f;
 
@@ -34,18 +29,6 @@ public class PlayerController : MonoBehaviour {
         Vector2 targetPosition = Vector2.zero;
 
         bool tryToMove = false;
-
-        if (gameObject != null)
-        {
-            BotLeft.text = (transform.position.x + (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                              ":" + (transform.position.y - (gameObject.GetComponent<BoxCollider2D>().size.y / 2f));
-            BotRight.text = (transform.position.x - (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                              ":" + (transform.position.y - (gameObject.GetComponent<BoxCollider2D>().size.y / 2f));
-            TopLeft.text = (transform.position.x + (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                              ":" + (transform.position.y + (gameObject.GetComponent<BoxCollider2D>().size.y / 2f));
-            TopRight.text = (transform.position.x - (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                              ":" + (transform.position.y + (gameObject.GetComponent<BoxCollider2D>().size.y / 2f));
-        }
 
         //Movement logic
         if (!jumped)
@@ -75,6 +58,7 @@ public class PlayerController : MonoBehaviour {
             Collider2D hitCollider = Physics2D.OverlapCircle(targetPosition, 0.05f);
             if ((hitCollider == null || hitCollider.GetComponent<Enemy>() != null) && tryToMove == true)
             {
+                GetComponent<AudioSource>().Play();
                 jumped = true;
                 transform.position = targetPosition;
                 if (OnPlayerMoved != null)
@@ -119,14 +103,6 @@ public class PlayerController : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        /*Debug.Log("Player corners: " + (transform.position.x + (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                          ":" + (transform.position.y + (gameObject.GetComponent<BoxCollider2D>().size.y / 2f)) +
-                          " " + (transform.position.x - (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                          ":" + (transform.position.y + (gameObject.GetComponent<BoxCollider2D>().size.y / 2f)) +
-                          " " + (transform.position.x - (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                          ":" + (transform.position.y - (gameObject.GetComponent<BoxCollider2D>().size.y / 2f)) +
-                          " " + (transform.position.x + (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                          ":" + (transform.position.y - (gameObject.GetComponent<BoxCollider2D>().size.y / 2f)));*/
         if (collision.GetComponent<Enemy>() != null)
         {
             Destroy(gameObject);

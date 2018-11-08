@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
+    public float speed = 1f;
+
 	// Use this for initialization
 	void Start () {
-        Debug.Log(gameObject.GetComponent<BoxCollider2D>().size);
-        Debug.Log("Enemy corners: " + (transform.position.x + (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                          ":" + (transform.position.y + (gameObject.GetComponent<BoxCollider2D>().size.y / 2f)) +
-                          " " + (transform.position.x - (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                          ":" + (transform.position.y + (gameObject.GetComponent<BoxCollider2D>().size.y / 2f)) +
-                          " " + (transform.position.x - (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                          ":" + (transform.position.y - (gameObject.GetComponent<BoxCollider2D>().size.y / 2f)) +
-                          " " + (transform.position.x + (gameObject.GetComponent<BoxCollider2D>().size.x / 2f)) +
-                          ":" + (transform.position.y - (gameObject.GetComponent<BoxCollider2D>().size.y / 2f)));
+
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
+
+        if(transform.position.x > (Screen.width / 100f) / 2f + 0.32f)
+        {
+            transform.position = new Vector3(-transform.position.x + 0.32f, transform.position.y, transform.position.z);
+        }
+        else if(transform.position.x < -(Screen.width / 100f) / 2f - 0.32f) {
+            transform.position = new Vector3(-transform.position.x - 0.32f, transform.position.y, transform.position.z);
+        }
+
+    }
 }
