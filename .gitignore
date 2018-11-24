@@ -1,0 +1,45 @@
+# =============== #
+# Unity generated #
+# =============== #
+RogueFrog/[Tt]emp/
+RogueFrog/[Oo]bj/
+RogueFrog/[Bb]uild
+RogueFrog/[Bb]uilds/
+RogueFrog/[Ll]ibrary/
+RogueFrog/sysinfo.txt
+*.stackdump
+RogueFrog/Assets/AssetStoreTools*
+*.apk
+*.unitypackage
+ 
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+[Ee]xported[Oo]bj/
+RogueFrog/.vs/
+RogueFrog/*.userprefs
+RogueFrog/*.csproj
+RogueFrog/*.pidb
+RogueFrog/*.pidb.meta
+RogueFrog/*.suo
+RogueFrog/*.sln*
+RogueFrog/*.user
+RogueFrog/*.unityproj
+RogueFrog/*.booproj
+RogueFrog/.consulo/
+RogueFrog/*.tmp
+RogueFrog/*.svd
+ 
+# ============ #
+# OS generated #
+# ============ #
+RogueFrog/.DS_Store*
+RogueFrog/._*
+RogueFrog/.Spotlight-V100
+RogueFrog/.Trashes
+RogueFrog/Icon?
+RogueFrog/ehthumbs.db
+RogueFrog/[Tt]humbs.db
+RogueFrog/[Dd]esktop.ini
+RogueFrog/Corridor/Library/ShaderCache/
+RogueFrog/Corridor/Library/metadata/
