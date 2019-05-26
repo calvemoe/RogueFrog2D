@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 
+    //enemy starting speed
     public float speed = 1f;
 
-	// Use this for initialization
-	void Start () {
+    private Rigidbody2D rbEnemy;
+    private float boundary;
 
+	void Awake () {
+        rbEnemy = GetComponent<Rigidbody2D>();
+        boundary = (Screen.width / 100f) / 2f + 0.32f;
     }
 	
 	// Update is called once per frame
 	void Update () {
-        GetComponent<Rigidbody2D>().velocity = new Vector2(speed, 0);
+        rbEnemy.velocity = new Vector2(speed, 0);
 
-        if(transform.position.x > (Screen.width / 100f) / 2f + 0.32f)
-        {
+        if(transform.position.x > boundary) {
             transform.position = new Vector3(-transform.position.x + 0.32f, transform.position.y, transform.position.z);
         }
-        else if(transform.position.x < -(Screen.width / 100f) / 2f - 0.32f) {
+        else if(transform.position.x < -boundary) {
             transform.position = new Vector3(-transform.position.x - 0.32f, transform.position.y, transform.position.z);
         }
 
