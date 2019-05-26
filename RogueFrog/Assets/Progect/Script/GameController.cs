@@ -6,12 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
-    public Text levelText;
-    public Text scoreText;
-    public Text gameOverText;
+    [SerializeField]
+    private Text levelText;
+    [SerializeField]
+    private Text scoreText;
+    [SerializeField]
+    private Text gameOverText;
 
-    public PlayerController player;
+    [SerializeField]
+    private PlayerController player;
 
+    //multiplier for enemy speed increasing
     private float difficultyIncrease = 1.2f;
 
     private float highestPosition;
@@ -20,51 +25,46 @@ public class GameController : MonoBehaviour {
 
     private float restartTimer = 3f;    //3 seconds after game over
 
+    private List<Enemy> enemies;
+
+    void Awake() {
+        enemies = new List<Enemy>(GetComponentsInChildren<Enemy>());
+        highestPosition = player.transform.position.y;
+    }
+
 	// Use this for initialization
 	void Start () {
         gameOverText.gameObject.SetActive(false);
+
         player.OnPlayerMoved += OnPlayerMoved;
         player.OnPlayerEscaped += OnPlayerEscaped;
-
-        highestPosition = player.transform.position.y;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (player == null)
-        {
+        if (player == null) {
             gameOverText.gameObject.SetActive(true);
 
             restartTimer -= Time.deltaTime;
             if (restartTimer <= 0)
-            {
                 SceneManager.LoadScene("Game");
-            }
         }
 	}
 
-    void OnPlayerMoved()
-    {
-        if (player.transform.position.y > highestPosition)
-        {
+    void OnPlayerMoved() {
+        if (player.transform.position.y > highestPosition) {
             highestPosition = player.transform.position.y;
             score++;
-            scoreText.text = "Score: " + score;
+            scoreText.text = score.ToString();
         }
     }
 
-    void OnPlayerEscaped()
-    {
+    void OnPlayerEscaped() {
         highestPosition = player.transform.position.y;
         level++;
-        levelText.text = "Level " + level;
+        levelText.text = level.ToString();
 
-        Debug.Log(difficultyIncrease);
-
-        foreach(Enemy enemy in GetComponentsInChildren<Enemy>())
-        {
-            Debug.Log(enemy.speed);
+        foreach(Enemy enemy in enemies)
             enemy.speed *= difficultyIncrease;
-        }
     }
 }
